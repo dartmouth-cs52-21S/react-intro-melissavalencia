@@ -8,7 +8,7 @@ Using React components to build it.
 ## What Worked Well
 It was easy to work with all the components.
 ## What Didn't
-
+I was a bit stuck on where to place certain lines of code, but I figured it out after.
 ## Extra Credit
 
 ## Screenshots

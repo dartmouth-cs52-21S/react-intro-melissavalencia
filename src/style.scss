@@ -1,0 +1,70 @@
+$fontcolor:  rgb(10%, 10%, 10%);
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: $fontcolor;
+  background-color: #f9f9f9;
+  margin: 50px;
+}
+
+
+#search-bar {
+  margin-bottom: 30px;
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  input {
+    font-size: 1.5em;
+    border-radius: .25em;
+    border: 2px solid #cccccc;
+    padding: 0.25em;
+    text-align: inherit;
+    width: 70%;
+    color: $fontcolor;
+  }
+
+  ::placeholder{
+    color: #a2a2a2;
+  }
+}
+
+#video-detail {
+  width: 100%;
+}
+
+.details{
+  padding-top: 0.5em;
+}
+
+#video-title{
+  font-size: 1.5em;
+  font-weight: bold;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 0.2em;
+}
+
+#video-des{
+  padding: 0.3em;
+}
+
+#video-section {
+  display: flex;
+
+  li {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    width: 25vw;
+    padding: 10px;
+  }
+  li:hover {
+    background: darken( #f9f9f9, 10% );
+  }
+
+}
+
+#list-title{
+  font-weight: bold;
+  padding-left: 0.5em;
+}

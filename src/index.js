@@ -3,69 +3,32 @@
 
 // change require to es6 import style
 // import $ from 'jquery';
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './style.scss';
-import debounce from 'lodash.debounce';
-import SearchBar from './components/search_bar';
-import youtubeSearch from './youtube-api';
-import VideoList from './components/video_list';
-import VideoDetail from './components/video_detail';
+import React from 'react';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
-    this.state = {
-      videos: [],
-      selectedVideo: null,
-    };
+import reducers from './reducers';
+// >>>>>>> 1bab4ac15fcc656c55e8339c969e92f4216245de
 
-    this.search = debounce(this.search, 300);
+import App from './components/app';
 
-    this.search('pixar');
+// this creates the store with the reducers, and does some other stuff to initialize devtools
+// boilerplate to copy, don't have to know
+const store = createStore(reducers, {}, compose(
+  applyMiddleware(),
+  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
+));
 
-    // youtubeSearch('pixar').then((videos) => {
-    //   this.setState({
-    //     videos,
-    //     selectedVideo: videos[0],
-    //   });
-    // });
-  }
-
-  search = (text) => {
-    youtubeSearch(text).then((videos) => {
-      this.setState({
-        videos,
-        selectedVideo: videos[0],
-      });
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <SearchBar onSearchChange={this.search} />
-        <div id="video-section">
-          <VideoDetail video={this.state.selectedVideo} />
-          <VideoList onVideoSelect={(selectedVideo) => this.setState({ selectedVideo })} videos={this.state.videos} />
-        </div>
-      </div>
-    );
-  }
-}
-
-// const App = () => {
-//   return (
-//     <div>
-//       <SearchBar />
-//     </div>
-//   );
-// };
-
-// const App = () => <div className="test">All the REACT are belong to us!</div>;
-
-ReactDOM.render(<App />, document.getElementById('main'));
+// we now wrap App in a Provider
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('main'),
+);
 
 // let sec = 0;
 // setInterval(() => { $('#main').html(`You have been on this page for ${sec} seconds.`); sec += 1; }, 1000);
